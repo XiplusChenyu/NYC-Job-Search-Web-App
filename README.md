@@ -9,7 +9,7 @@ See Origin: https://github.com/Daniel-Bu/w4111-project1/tree/master/Web-app<br/>
 pip install flask psycopg2 sqlalchemy click flask-login
 ```
 ## Other issues:
-Some part of the Server.py haven't add SQL injection
+Some part of the Server.py haven't add **SQL injection prevention**
 
 ## Files
 - Server.py: Run to start the Server
