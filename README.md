@@ -1,5 +1,5 @@
 # NYC Job Search Web-app
-Designed by Chenyu Xi and Zhihan Bu
+Designed by Chenyu Xi and Zhihan Bu<br/>
 See Origin: https://github.com/XiplusChenyu/w4111-project1
 ## Environment
 - Python 2.7
