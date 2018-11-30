@@ -1,6 +1,6 @@
 # NYC Job Search Web-app
 Designed by Chenyu Xi and Zhihan Bu<br/>
-See Origin: https://github.com/Daniel-Bu/w4111-project1/tree/master/Web-app
+See Origin: https://github.com/Daniel-Bu/w4111-project1/tree/master/Web-app<br/>
 **No Security method enabled for this login system**
 ## Environment
 - Python 2.7
