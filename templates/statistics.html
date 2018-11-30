@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block body%}
+<h2><center>Statistics!</center></h2>
+<div>There are currently <b>{{jobnum}}</b> Jobs in our system!</div>
+<div>There are currently <b>{{usernum}}</b> Users using our system!</div>
+<div>There are currently <b>{{appnum}}</b> Applications submitted!</div>
+<br/>
+<h2><center>Show Salary Distribution</center></h2>
+<form method="POST">
+<div>Salary Frequency:
+    <select name="attr">
+        <option value="Annual">Annual</option>
+        <option value="Daily">Daily</option>
+        <option value="Hourly">Hourly</option>
+    </select><br/>
+    Salary type:
+    <select name="attr2">
+        <option value="lower">Lower Bound</option>
+        <option value="upper">Upper Bound</option>
+    </select>
+    <p><input type=submit value="Show Results"></p>
+</div>
+</form>
+    {% if show == 1:%}
+<div class=>
+    <h3><center>Salary Distribution</center></h3>
+    <center>
+    <canvas id="circle" width="600" height="400">Browser not support Canvas!</canvas>
+        <p><b>{{txt}}</b></p>
+    </center>
+    {%endif%}
+</div>
+
+<button onclick="window.location.href = '/';">Back home</button>
+<script type="text/javascript">
+var color = ["#27255F","#2F368F","#3666B0","#2CA8E0","#77D1F6"];
+var data = {{data}};
+var low = {{low}};
+var high = {{high}};
+var ox = 180;
+var oy = 180;
+var radius = 150;
+var width = 30;
+var height = 10;
+var posX = ox * 2 +5, posY = 30;
+var textX = posX + width + 5, textY = posY + 10;
+
+function drawCircle(){
+	var canvas = document.getElementById("circle");
+	var ctx = canvas.getContext("2d");
+	var startPoint=0;
+	for(var i=0;i<data.length;i++){
+		ctx.fillStyle = color[i];
+		ctx.beginPath();
+		ctx.moveTo(ox,oy);
+		ctx.arc(ox,oy,radius,startPoint,startPoint+Math.PI*2*(data[i]/100),false); // fill the circle
+		ctx.closePath();
+		ctx.fill();
+		ctx.fillStyle = color[i];
+		ctx.fillRect(posX, posY + 20 * i, width, height); //sample color
+		ctx.font = 'bold 15px'
+		ctx.fillStyle = "#000";
+		var text = "Salary from " + low[i] + " to " + high[i] + "：" + data[i] + "%";
+		ctx.fillText(text, textX, textY + 20 * i);
+		startPoint+=Math.PI*2*(data[i]/100);
+
+	}
+}
+drawCircle();
+</script>
+{% endblock %}

@@ -1,0 +1,30 @@
+<!doctype html>
+<title>NYC Job Search</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+    <h1> <center>NYC Job Search</center> </h1>
+    <body><font size="3"><center>
+    <p>Designed by <b>Chenyu Xi</b> and <b>Zihan Bu</b>: <a href="https://github.com/Daniel-Bu/project1/tree/master/Web-app"> GitHub Link </a>
+    </center></font></body></p>
+    {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+        <br/>
+    {% endfor %}
+        <div>
+    {% if not session.logged_in %}
+        {% if page == 'login' %}
+        <a href="{{ url_for('signup') }}"><center><font size="2">sign up</font></center></a>
+        {% else %}
+        <a href="{{ url_for('login') }}"><center><font size="2">log in</font></center></a>
+        {% endif %}
+    {% else %}
+        <a href="{{ url_for('logout') }}"><center><font size="2">log out</font></center></a>
+    {% endif %}
+            </div>
+    <br/>
+    <div class=metanav><font size="3">
+    {% block body %}{% endblock %}
+        </font>
+    </div>
+
+</div>

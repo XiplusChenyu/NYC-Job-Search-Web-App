@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body%}
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}</p>
+        <div class="flash">
+            <p>You have deleted job {{jid}}, {{vtype}}. {{message}}</p>
+        </div>
+<button onclick="goBack()">Back</button>
+<button onclick="window.location.href = '/admin';">Back home</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+{% endblock %}

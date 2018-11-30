@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="login"> <center>
+    <h2><center>Admin Login</center></h2><br/>
+    {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+    <form action="{{ url_for('admin_login') }}" method=post>
+        <dl>
+            <center><dt>Admin account:</center>
+            <center><dd><input type=text name=account></center>
+            <br>
+            <center><dt>Password:</center>
+            <center><dd><input type=password name=password></center>
+        </dl>
+    <p align="center"><input type=submit value="log in"></p>
+    </form>
+</center></div>
+    <p align="center"><a href="./login">Back to User Login</a></p>
+{% endblock %}

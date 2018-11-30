@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body%}
+    <div>{{ message }}</div>
+    {%if show==1%}
+<div><center><b>Your current applications:</b> <br>
+        <br/>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Salary from</th>
+                <th>Salary to</th>
+                <th>Frequency</th>
+                <th>Posting time</th>
+                <th>Details</th>
+                <th>Cancel</th>
+            </tr>
+            {% for n in data %}
+            <tr>
+            <td>&nbsp{{n[0]}}</td>
+            <td>&nbsp{{n[1]}}</td>
+            <td>&nbsp{{n[2]}}</td>
+            <td>&nbsp{{n[3]}}</td>
+            <td>&nbsp{{n[4]}}</td>
+            <td>&nbsp{{n[5]}}</td>
+            <td>&nbsp{{n[6]}}</td>
+            <td>
+            <form action="{{ url_for('detailed_info') }}" method=post>
+                <input type=hidden name=jid value={{n[0]}}>
+                <input type=hidden name=vtype value={{n[2]}}>
+                <input type=submit value="Detailed info">
+            </form>
+            </td>
+            <td>
+            <form action="{{ url_for('cancel_apply') }}" method=post>
+                <input type=hidden name=jid value={{n[0]}}>
+                <input type=hidden name=vtype value={{n[2]}}>
+                <input type=submit value="Cancel">
+            </form>
+            </td>
+            {% endfor %}
+        </table>
+    </center>
+    </div>
+    {%else%}
+        <div>You have no application yet!</div>
+    {%endif%}
+    <br/>
+    <p align="center"><a href="/search">Search a job!</a></p>
+    <p align="center"><a href="/statistics">See statistics!</a></p>
+{% endblock %}
