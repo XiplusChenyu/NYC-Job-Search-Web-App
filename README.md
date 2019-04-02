@@ -3,7 +3,7 @@ Designed by Chenyu Xi and Zhihan Bu<br/>
 See Original Work Here: https://github.com/Daniel-Bu/w4111-project1/tree/master/Web-app<br/>
 
 ## Environment
-- Python 2.7
+- Python 3
 - Packages:  
 ```
 pip install flask psycopg2 sqlalchemy click flask-login
