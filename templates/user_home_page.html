@@ -1,11 +1,12 @@
 {% extends "layout.html" %}
 {% block body%}
-    <div class="vbox">{{ message }}</div>
+    <div class="welcome">{{ message }}</div>
     {%if show==1%}
-<div><center><b>Your current applications:</b> <br>
-        <br/>
+         <br/>
+<div class="card">
+    <div class="card-title text-center" style="margin: 10px auto"><b>Your Current Applications</b></div>
         <table border="1">
-            <tr>
+            <tr style="text-align: center">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Type</th>
@@ -29,24 +30,24 @@
             <form action="{{ url_for('detailed_info') }}" method=post>
                 <input type=hidden name=jid value={{n[0]}}>
                 <input type=hidden name=vtype value={{n[2]}}>
-                <input type=submit value="Detailed info">
+                <input type=submit value="Info" style="margin: auto">
             </form>
             </td>
             <td>
-            <form action="{{ url_for('cancel_apply') }}" method=post>
+            <form action="{{ url_for('cancel_apply') }}" method=post  style="margin: auto">
                 <input type=hidden name=jid value={{n[0]}}>
                 <input type=hidden name=vtype value={{n[2]}}>
-                <input type=submit value="Cancel">
+                <input type=submit value="Cancel" style="margin: auto">
             </form>
             </td>
             {% endfor %}
         </table>
-    </center>
     </div>
     {%else%}
-        <div>You have no application yet!</div>
+        <br/>
+        <div class="welcome" style="color: black; background: #fafafa; font: 20px bold">You have no application record</div>
     {%endif%}
     <br/>
-    <p align="center"><a href="/search">Search a job!</a></p>
-    <p align="center"><a href="/statistics">See statistics!</a></p>
+    <p align="center"><a href="/search">search a job here</a></p>
+    <p align="center"><a href="/statistics">see statistics here</a></p>
 {% endblock %}

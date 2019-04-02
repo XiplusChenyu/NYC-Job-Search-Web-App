@@ -8,21 +8,22 @@
 
 <div class=page>
     <h1> NYC Job Search </h1>
-    <div class="card-body" style="width: 25%; margin: auto;">
-        Designed by <b>Chenyu Xi</b>: <a href="https://github.com/XiplusChenyu/NYC-Job-Search-Web-App">GitHub Link</a>
-
+    <div class="row" style=" margin: auto;">
+        <p>Designed by <a href="https://github.com/XiplusChenyu/NYC-Job-Search-Web-App">Chenyu Xi</a></p>
     </div>
+
     {% for message in get_flashed_messages() %}
-        <div class=flash>{{ message }}</div>
-        <br/>
+        <div class=flash id="notice" onclick="disapper(this.id)">{{ message }} (click me to hide) <br/></div>
     {% endfor %}
-    <div class=metanav>
-    {% block body %}{% endblock %}
-    </div>
 
+    <div class=metanav>
+
+    {% block body %}
+
+    {% endblock %}
+    </div>
     <br/>
  <div>
-
         {% if not session.logged_in %}
             {% if page == 'login' %}
             <a class="btn" style="font:30px bold" href="{{ url_for('signup') }}">sign up</a>
@@ -34,3 +35,9 @@
         {% endif %}
     </div>
 </div>
+<script>
+    function disapper(id){
+        let element = document.getElementById(id);
+        element.style.display = "none";
+    }
+</script>

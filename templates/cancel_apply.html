@@ -1,13 +1,8 @@
 {% extends "layout.html" %}
 {% block body%}
-<div class="error">
-<p>Your application for job {{jid}}, {{vtype}} has been cancelled! You can check it out on your home page.</p>
+
+<div class="welcome" style="background: #f0d6d6; color: black; padding: 5px">
+    Your application for job: <b>{{jid}}, {{vtype}}</b> has been cancelled! You can check it out on your <a href="/">Home Page</a>.
 </div>
-<!--<button onclick="goBack()">Back</button>-->
-<button onclick="window.location.href = '/';">Back home</button>
-<script>
-function goBack() {
-    window.history.back();
-}
-</script>
+
 {% endblock %}

@@ -1,21 +1,28 @@
 {% extends "layout.html" %}
 {% block body%}
-{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}</p>
-<div class="picture"> <center>
-<form method="POST">
-<h3 align="center"> Search jobs!</h3>
-    <div align="left">
-<div>I want to search by
-<select name="attr">
-    <option value="name">name</option>
-    <option value="salary">salary</option>
-    <option value="skill">skill/requirement</option>
-</select>
-    with the keyword:
-<input type=text name="keyword" placeholder="required">
-</div>
+
+{% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}</p>
+    <br>
+{% endif %}
+
+<div class="card" style="width: 75%; margin: auto">
+    <div class="card-body">
+        <form method="POST">
+            <h3 class="card-title" align="center"> Search Jobs Here</h3>
+
+            <div align="left">
+                <div>I want to search by
+                    <select name="attr">
+                        <option value="name">name</option>
+                        <option value="salary">salary</option>
+                        <option value="skill">skill/requirement</option>
+                    </select>
+                    with the keyword: <input type=text name="keyword" placeholder="required">
+            </div>
+
      <br/>
-<div>Posting time from <input type=date name="pt_from" placeholder="YYYY-MM-DD (Optional)"> to <input type=date name="pt_to" placeholder="YYYY-MM-DD (Optional)"> </div>
+    <div>Posting time from <input type=date name="pt_from" placeholder="YYYY-MM-DD (Optional)"> to <input type=date name="pt_to" placeholder="YYYY-MM-DD (Optional)"> </div>
     <br/>
 <div>
 In the order of
@@ -40,7 +47,8 @@ In the order of
     <p><font size="1"></font></p>
 <p><input type=submit value=Search></p>
 </form>
-</center></div>
+</div>
+</div>
 {% if show==1 %}
 <body><center>
   <h3>Search by: {{keyfield}} with key word: {{keyword}}. Show {{shownum}} records!</h3>
