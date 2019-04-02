@@ -1,30 +1,45 @@
 <!doctype html>
+
 <title>NYC Job Search</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
 <div class=page>
-    <h1> <center>NYC Job Search</center> </h1>
-    <body><font size="3"><center>
-    <p>Designed by <b>Chenyu Xi</b> and <b>Zihan Bu</b>: <a href="https://github.com/Daniel-Bu/project1/tree/master/Web-app"> GitHub Link </a>
-    </center></font></body></p>
-    {% for message in get_flashed_messages() %}
-        <div class=flash>{{ message }}</div>
+    <h1> NYC Job Search </h1>
+    <div>
+        Designed by <b>Chenyu Xi</b> and <b>Zihan Bu</b>: <a href="https://github.com/Daniel-Bu/project1/tree/master/Web-app">GitHub Link</a>
         <br/>
-    {% endfor %}
-        <div>
-    {% if not session.logged_in %}
-        {% if page == 'login' %}
-        <a href="{{ url_for('signup') }}"><center><font size="2">sign up</font></center></a>
+
+        {% if not session.logged_in %}
+            {% if page == 'login' %}
+            <a class="signbtm" href="{{ url_for('signup') }}">sign up</a>
+            {% else %}
+            <a class="signbtm" href="{{ url_for('login') }}">log in</a>
+            {% endif %}
         {% else %}
-        <a href="{{ url_for('login') }}"><center><font size="2">log in</font></center></a>
+            <a href="{{ url_for('logout') }}">log out</a>
         {% endif %}
-    {% else %}
-        <a href="{{ url_for('logout') }}"><center><font size="2">log out</font></center></a>
-    {% endif %}
-            </div>
-    <br/>
-    <div class=metanav><font size="3">
-    {% block body %}{% endblock %}
-        </font>
+
+        {% for message in get_flashed_messages() %}
+            <div class=flash>{{ message }}</div>
+            <br/>
+        {% endfor %}
+
     </div>
 
+    <div class=metanav>
+    {% block body %}{% endblock %}
+    </div>
+
+    <br/>
 </div>
+
+<style>
+    .signbtm {
+        width: min-content;
+        margin-right: 10px;
+        color: cadetblue;
+    }
+</style>

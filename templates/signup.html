@@ -1,21 +1,42 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="login"> <center>
-<h2><center>sign up</center></h2><br/>
-    {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-    <form action="{{ url_for('signup') }}" method=post>
-        <dl>
-            <center><dt>Username:</center>
-            <center><dd><input type=text name=username></center>
-            <br>
-            <center><dt>Email:</center>
-            <center><dd><input type=email name=email></center>
-            <br>
-            <center><dt>Password:</center>
-            <center><dd><input type=password name=password></center>
-        </dl>
-    <center><input type=submit value="sign up"></center>
-    </form>
-</center></div>
-    <br>
+
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='login.css') }}">
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h2 class="card-title text-center" >Sign Up</h2>
+            <form class="form-signin" action="{{ url_for('signup') }}" method=post>
+                {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+
+              <div class="form-label-group">
+                <input type="text" id="inputName" class="form-control" name=username placeholder="Name" required>
+                <label for="inputName">Name</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="email" id="inputEmail" class="form-control" name=email placeholder="Email" required>
+                <label for="inputEmail">Email</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" name=password placeholder="Password" required>
+                <label for="inputPassword">Password</label>
+              </div>
+
+              <input class="btn btn-lg btn-primary btn-block text-uppercase" type=submit value="Sign Up">
+
+              <hr class="my-4">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

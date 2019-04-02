@@ -40,8 +40,9 @@ class User(UserMixin):
         try:
             query = '''
             insert into usr (email,name,password)
-            values (%s,%s,%s)'''
-            if self.email.strip() == '' or self.name.strip() == '' or self.name.strip() =='':
+            values (%s,%s,%s)
+            '''
+            if self.email.strip() == '' or self.name.strip() == '' or self.name.strip() == '':
                 return
             g.conn.execute(query, (self.email, self.name, self.password))
             self.valid = True

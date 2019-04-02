@@ -1,10 +1,10 @@
 from sqlalchemy import *
 
 # Set up Database
-DB_USER = "zb2244"
-DB_PASSWORD = "hx2jsr9w"
-DB_SERVER = "w4111.cisxo09blonu.us-east-1.rds.amazonaws.com"
-DATABASEURI = "postgresql://"+DB_USER+":"+DB_PASSWORD+"@"+DB_SERVER+"/w4111"
+DB_USER = "chenyuxi"
+DB_PASSWORD = "XCY311601"
+DB_SERVER = "nycjobdataset.c3jkaduyfnrl.us-east-1.rds.amazonaws.com"
+DATABASEURI = "postgresql://"+DB_USER+":"+DB_PASSWORD+"@"+DB_SERVER+"/nycjob"
 engine = create_engine(DATABASEURI)
 
 # Test Database
