@@ -584,37 +584,32 @@ def admin_delete():
 
 
 if __name__ == '__main__':
-    import click
+    # import click
     import os
 
-    ON_HEROKU = os.environ.get('ON_HEROKU')
-    if ON_HEROKU:
-        # get the heroku port
-        port = int(os.environ.get('PORT', 17995))  # as per OP comments default is 17995
-        host = int(os.environ.get('HOST'))
-    else:
-        port = 8801
-        host = '0.0.0.0'
+    port = int(os.environ.get("PORT", 5000))
+    host = '0.0.0.0'
 
-    @click.command()
-    @click.option('--debug', is_flag=True)
-    @click.option('--threaded', is_flag=True)
-    @click.argument('HOST', default=host)
-    @click.argument('PORT', default=port, type=int)
-    def run(debug, threaded, host, port):
-        """
-        This function handles command line parameters.
-        Run the server using
+    # @click.command()
+    # @click.option('--debug', is_flag=True)
+    # @click.option('--threaded', is_flag=True)
+    # @click.argument('HOST', default=host)
+    # @click.argument('PORT', default=port, type=int)
+    # def run(debug, threaded, host, port):
+    #     """
+    #     This function handles command line parameters.
+    #     Run the server using
+    #
+    #         python server.py
+    #
+    #     Show the help text using
+    #
+    #         python server.py --help
+    #
+    #     """
+    #     HOST, PORT = host, port
+    #     print("running on %s:%d" % (HOST, PORT))
 
-            python server.py
+    app.run(host=host, port=port)
 
-        Show the help text using
-
-            python server.py --help
-
-        """
-        HOST, PORT = host, port
-        print("running on %s:%d" % (HOST, PORT))
-        app.run(host=HOST, port=PORT, debug=debug, threaded=threaded)
-
-    run()
+    # run()
