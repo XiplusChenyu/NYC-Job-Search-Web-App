@@ -31,8 +31,3 @@ def show_salary_statistics():
         num[i] = float(num[i]) / float(numsum) * 100
     return num, sal_range
 
-data, txt = show_salary_statistics()
-print data, txt
-
-A = 'JHJASJ'
-print A.lower()

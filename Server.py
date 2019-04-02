@@ -33,7 +33,7 @@ def before_request():
   try:
     g.conn = engine.connect()
   except:
-    print "uh oh, problem connecting to database"
+    print("uh oh, problem connecting to database")
     import traceback; traceback.print_exc()
     g.conn = None
 
@@ -64,7 +64,7 @@ def login():
         else:
             session['logged_in'] = True
             login_user(user)
-            print current_user.id
+            # print(current_user.id)
             flash('You were logged in')
             g.user = current_user.id
             return redirect(url_for('user_home_page'))
@@ -90,7 +90,7 @@ def admin_login():
         else:
             session['logged_in'] = True
             login_user(user)
-            print current_user.id
+            # print(current_user.id)
             flash('You were logged in')
             g.user = current_user.id
             return redirect(url_for('admin_home_page'))
@@ -107,7 +107,7 @@ def signup():
         name = str(request.form['username']).strip()
         password = str(request.form['password']).strip()
         email = str(request.form['email']).strip()
-        print name, password, email
+        # print(name, password, email)
         newuser = User(email, password, name)
         newuser.insert_new_user()
         if not newuser.valid:
@@ -604,7 +604,7 @@ if __name__ == '__main__':
 
         """
         HOST, PORT = host, port
-        print "running on %s:%d" % (HOST, PORT)
+        print("running on %s:%d" % (HOST, PORT))
         app.run(host=HOST, port=PORT, debug=debug, threaded=threaded)
 
     run()

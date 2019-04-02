@@ -49,7 +49,7 @@ class User(UserMixin):
             if self.valid:
                 self.id = self.email
         except:
-            print 'invalid user'
+            print('invalid user')
 
     '''
     Rewrite def in order to get things work
