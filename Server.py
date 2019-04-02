@@ -585,12 +585,22 @@ def admin_delete():
 
 if __name__ == '__main__':
     import click
+    import os
+
+    ON_HEROKU = os.environ.get('ON_HEROKU')
+    if ON_HEROKU:
+        # get the heroku port
+        port = int(os.environ.get('PORT', 17995))  # as per OP comments default is 17995
+        host = int(os.environ.get('HOST'))
+    else:
+        port = 8801
+        host = '0.0.0.0'
 
     @click.command()
     @click.option('--debug', is_flag=True)
     @click.option('--threaded', is_flag=True)
-    @click.argument('HOST', default='0.0.0.0')
-    @click.argument('PORT', default=33507, type=int)
+    @click.argument('HOST', default=host)
+    @click.argument('PORT', default=port, type=int)
     def run(debug, threaded, host, port):
         """
         This function handles command line parameters.
