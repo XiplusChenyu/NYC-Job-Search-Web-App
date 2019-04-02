@@ -587,7 +587,7 @@ if __name__ == '__main__':
     # import click
     import os
 
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 8181))
     host = '0.0.0.0'
 
     # @click.command()

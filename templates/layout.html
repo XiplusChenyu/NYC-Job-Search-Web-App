@@ -8,38 +8,29 @@
 
 <div class=page>
     <h1> NYC Job Search </h1>
-    <div>
-        Designed by <b>Chenyu Xi</b> and <b>Zihan Bu</b>: <a href="https://github.com/Daniel-Bu/project1/tree/master/Web-app">GitHub Link</a>
-        <br/>
-
-        {% if not session.logged_in %}
-            {% if page == 'login' %}
-            <a class="signbtm" href="{{ url_for('signup') }}">sign up</a>
-            {% else %}
-            <a class="signbtm" href="{{ url_for('login') }}">log in</a>
-            {% endif %}
-        {% else %}
-            <a href="{{ url_for('logout') }}">log out</a>
-        {% endif %}
-
-        {% for message in get_flashed_messages() %}
-            <div class=flash>{{ message }}</div>
-            <br/>
-        {% endfor %}
+    <div class="card-body" style="width: 25%; margin: auto;">
+        Designed by <b>Chenyu Xi</b>: <a href="https://github.com/XiplusChenyu/NYC-Job-Search-Web-App">GitHub Link</a>
 
     </div>
-
+    {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+        <br/>
+    {% endfor %}
     <div class=metanav>
     {% block body %}{% endblock %}
     </div>
 
     <br/>
-</div>
+ <div>
 
-<style>
-    .signbtm {
-        width: min-content;
-        margin-right: 10px;
-        color: cadetblue;
-    }
-</style>
+        {% if not session.logged_in %}
+            {% if page == 'login' %}
+            <a class="btn" style="font:30px bold" href="{{ url_for('signup') }}">sign up</a>
+            {% else %}
+            <a class="btn" style="font:30px bold" href="{{ url_for('login') }}">log in</a>
+            {% endif %}
+        {% else %}
+            <a class="btn" style="font:30px bold" href="{{ url_for('logout') }}">log out</a>
+        {% endif %}
+    </div>
+</div>
