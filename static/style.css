@@ -11,9 +11,9 @@ a:hover {color: #377ba8; text-decoration:underline;}
                     padding: 0.8em; background: white; }
 .metanav        { text-align: left; font-size: 16px; padding: 0.3em; width: calc(95%); margin: 5px auto;
                    background: #fafafa;}
-.flash          { background: #cee5F5; padding: 0.5em; margin: auto; width: auto; border-radius: 1rem;
+.flash          { background: #cee5F5; padding: 0.5em; margin: auto; width: auto;
                     border: 1px solid #aacbe2; }
-.error          { background: #f0d6d6; padding: 0.5em; margin: auto; width: auto; border-radius: 1rem;}
+.error          { background: #f0d6d6; padding: 0.5em; margin: auto; width: auto;}
 .picture        { margin: 2em auto; border: 1px solid #ccc; width: calc(75%);
                     padding: 0.8em; background: white; }
 .login        { margin: 2em auto; max-width: 30em; border: 1px solid #ccc; width: calc(80%);

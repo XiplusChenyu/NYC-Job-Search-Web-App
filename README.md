@@ -14,3 +14,5 @@ Password: admin
 ```
 
 ### Details
+- The database is hosted on Amazon RDS, which is muted on Database.py
+- The next stage should be beautify works
