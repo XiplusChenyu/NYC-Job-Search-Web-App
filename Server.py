@@ -558,29 +558,35 @@ def admin_search():
 @app.route("/delete", methods=["GET", "POST"])
 @login_required
 def admin_delete():
-    if request.method == 'POST':
-        jid = request.form.get('jid')
-        vtype = request.form.get('vtype')
-        keep = request.form.get('keep')
-        message = ''
-        query = '''
-        delete from vacancy
-        where jid=''' + jid + ' and type=\'' + vtype +'\''
-        g.conn.execute(text(query))
-        if keep == 'No':
-            query2 = '''
-            select * from vacancy where jid=''' + jid
-            cursor = g.conn.execute(text(query2))
-            data = cursor.fetchall()
-            if not data:
-                query3 = '''
-                            delete from job
-                            where jid=''' + jid
-                g.conn.execute(text(query3))
-                message = 'Job with ID: '+jid+" has been deleted, because there is no relevant vacancy " \
-                                              "and you choose to delete a job entry in this case ."
-        return render_template("delete.html", jid = jid, vtype = vtype, message=message)
-    return render_template("delete.html")
+    try:
+        if request.method == 'POST':
+            jid = request.form.get('jid')
+            vtype = request.form.get('vtype')
+            keep = request.form.get('keep')
+            message = ''
+            query = '''
+            delete from vacancy
+            where jid=''' + jid + ' and type=\'' + vtype +'\''
+            g.conn.execute(text(query))
+            if keep == 'No':
+                query2 = '''
+                select * from vacancy where jid=''' + jid
+                cursor = g.conn.execute(text(query2))
+                data = cursor.fetchall()
+                if not data:
+                    query3 = '''
+                                delete from job
+                                where jid=''' + jid
+                    g.conn.execute(text(query3))
+                    message = 'Job with ID: '+jid+" has been deleted, because there is no relevant vacancy " \
+                                                  "and you choose to delete a job entry in this case ."
+            return render_template("delete.html", jid = jid, vtype = vtype, message=message, show=1)
+        return render_template("delete.html")
+
+    except:
+        return render_template("delete.html", error='illegal delete')
+
+
 
 
 if __name__ == '__main__':

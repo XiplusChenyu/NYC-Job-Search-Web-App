@@ -3,9 +3,12 @@
     <div class="welcome">{{ message }}</div>
     {%if show==1%}
          <br/>
+
 <div class="card">
-    <div class="card-title text-center" style="margin: 10px auto"><b>Your Current Applications</b></div>
-        <table border="1">
+<div class="card-body">
+ <h2 class="card-title" align="center"> Your Current Applications</h2>
+<div  class="card-text center">
+    <table border="1">
             <tr style="text-align: center">
                 <th>ID</th>
                 <th>Name</th>
@@ -27,27 +30,30 @@
             <td>&nbsp{{n[5]}}</td>
             <td>&nbsp{{n[6]}}</td>
             <td>
-            <form action="{{ url_for('detailed_info') }}" method=post>
+            <form action="{{ url_for('detailed_info') }}" method=post style="padding: auto">
                 <input type=hidden name=jid value={{n[0]}}>
                 <input type=hidden name=vtype value={{n[2]}}>
-                <input type=submit value="Info" style="margin: auto">
+                <input type=submit value="Info" class="btn btn-info">
             </form>
             </td>
             <td>
-            <form action="{{ url_for('cancel_apply') }}" method=post  style="margin: auto">
+            <form action="{{ url_for('cancel_apply') }}" method=post  style="padding: auto">
                 <input type=hidden name=jid value={{n[0]}}>
                 <input type=hidden name=vtype value={{n[2]}}>
-                <input type=submit value="Cancel" style="margin: auto">
+                <input type=submit value="Cancel" class="btn btn-danger">
             </form>
             </td>
             {% endfor %}
         </table>
+</div>
+
+</div>
     </div>
     {%else%}
         <br/>
         <div class="welcome" style="color: black; background: #fafafa; font: 20px bold">You have no application record</div>
     {%endif%}
     <br/>
-    <p align="center"><a href="/search">search a job here</a></p>
-    <p align="center"><a href="/statistics">see statistics here</a></p>
+    <p align="center" ><a href="/search" style="font: 25px bold">Search A Job Here</a></p>
+    <p align="center"  ><a href="/statistics" style="font: 25px bold">See Statistics Here</a></p>
 {% endblock %}

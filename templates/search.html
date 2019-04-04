@@ -5,54 +5,58 @@
     <p class=error><strong>Error:</strong> {{ error }}</p>
     <br>
 {% endif %}
+<div class="container">
+    <div class="card" style="width: 75%; margin: auto">
+        <div class="card-body">
+            <form method="POST">
+                <h2 class="card-title" align="center"> Search Jobs Here</h2>
 
-<div class="card" style="width: 75%; margin: auto">
-    <div class="card-body">
-        <form method="POST">
-            <h3 class="card-title" align="center"> Search Jobs Here</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        I want to search by
+                         <select name="attr" class="styled-selects">
+                            <option value="name">name</option>
+                            <option value="salary">salary</option>
+                            <option value="skill">skill/requirement</option>
+                        </select> with the keyword: <input type=text name="keyword" placeholder="(Required)">
+                    </li>
+                    <li class="list-group-item">
+                        Posting time from <input type=date name="pt_from" placeholder="YYYY-MM-DD (Optional)">
+                        to <input type=date name="pt_to" placeholder="YYYY-MM-DD (Optional)">
+                    </li>
+                    <li  class="list-group-item">
+                        In the order of
+                         <select name="order">
+                            <option value="DESC">descendant</option>
+                            <option value="ASC">ascendant</option>
+                        </select>
+                        <select name="order_attr">
+                            <option value="pt">posting time</option>
+                            <option value="id">ID</option>
+                            <option value="name">name</option>
+                            <option value="lows">lowest salary</option>
+                            <option value="highs">highest salary</option>
+                        </select>
+                    </li>
+                    <li  class="list-group-item">
+                        Show <input type=text name="limit" placeholder="(Optional)"> record(s)
+                    </li>
+                    <input class="btn btn-primary" type=submit value=Search>
+                </ul>
+        </form>
+    </div>
+    </div>
+</div>
 
-            <div align="left">
-                <div>I want to search by
-                    <select name="attr">
-                        <option value="name">name</option>
-                        <option value="salary">salary</option>
-                        <option value="skill">skill/requirement</option>
-                    </select>
-                    with the keyword: <input type=text name="keyword" placeholder="required">
-            </div>
-
-     <br/>
-    <div>Posting time from <input type=date name="pt_from" placeholder="YYYY-MM-DD (Optional)"> to <input type=date name="pt_to" placeholder="YYYY-MM-DD (Optional)"> </div>
-    <br/>
-<div>
-In the order of
- <select name="order">
-    <option value="DESC">descendant</option>
-    <option value="ASC">ascendant</option>
-</select>   
-<select name="order_attr">
-    <option value="pt">posting time</option>
-    <option value="id">ID</option>
-    <option value="name">name</option>
-    <option value="lows">lowest salary</option>
-    <option value="highs">highest salary</option>
-</select>
-</div>
-        <br/>
-        </div>
-<div>
-    Show <input type=text name="limit" placeholder="type 'all' for all (Optional)"> record(s)
-</div>
-
-    <p><font size="1"></font></p>
-<p><input type=submit value=Search></p>
-</form>
-</div>
-</div>
 {% if show==1 %}
-<body><center>
-  <h3>Search by: {{keyfield}} with key word: {{keyword}}. Show {{shownum}} records!</h3>
-  <table border="1">
+
+<div class="card text-center">
+  <div class="card-header">
+    Search Result(s)
+  </div>
+  <div class="card-body">
+    <div class="card-text center">
+      <table border="1">
       <tr>
         <th>ID</th>
         <th>Name</th>
@@ -77,22 +81,29 @@ In the order of
     <form action="{{ url_for('detailed_info') }}" method=post>
         <input type=hidden name=jid value={{n[0]}}>
         <input type=hidden name=vtype value={{n[2]}}>
-        <input type=submit value="Detailed info">
+        <input class="btn btn-info" type=submit value="info">
     </form>
     </td>
     <td>
     <form action="{{ url_for('apply') }}" method=post>
         <input type=hidden name=jid value={{n[0]}}>
         <input type=hidden name=vtype value={{n[2]}}>
-        <input type=submit value="Apply now">
+        <input  class="btn btn-primary" type=submit value="Apply now">
     </form>
     </td>
     </tr>
     {% endfor %}
     </table>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+   Search by: {{keyfield}} with key word: {{keyword}}. Show {{shownum}} records!
+  </div>
+</div>
+    <br/>
   {%endif%}
-<br/>
-<button onclick="window.location.href = '/';">Back home</button>
-</center></body>
+    <button onclick="window.location.href = '/';" class="btn btn-dark ui-corner-right">Back home</button>
+
+
 
 {% endblock %}

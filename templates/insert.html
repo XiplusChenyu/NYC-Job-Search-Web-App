@@ -1,48 +1,70 @@
 {% extends "layout.html" %}
 {% block body%}
-{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}</p>
-<div class="picture"> <center>
-    <h3>Insert Vacancies</h3>
-    <div align="left">Please enter the following information to post a new vacancy.<br/> <b>Notice:</b> It's a naive function :)
+
+{% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}</p>
+    <br>
+{% endif %}
+<div class="container">
+    <div class="card" style="width: 75%; margin: auto">
+        <div class="card-body">
+            <form action="{{ url_for('admin_insert') }}" method=post>
+                <h2 class="card-title" align="center"> Insert Vacancies</h2>
+                <div class="card-text-left">Please enter the following information to post a new vacancy.<br/> <b>Notice:</b> It's a naive function :)
         and we only let you add vacancies for existing agencies as well as civil service titles, currently you cannot add detail information for new vacancy. :(
               <p>If the job is already in our database, we will only create a vacancy for you (input job information discarded). One job is allowed to have two vacancies, with different type.</p>
-<p></p>
-        <form action="{{ url_for('admin_insert') }}" method=post>
-        Job Name:&nbsp <input type=text name="jname">
-        <p></p>
-        Job ID:&nbsp <input type=text name="jid" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="only support numbers"><br>
-            <p></p>
-        Job Level:&nbsp <select name="level" id="levels"></select>
-            <p></p>
-        Agency / Unit: &nbsp  <select name="offer" id="offer"></select>
-            <p></p>
-        Civil Service Title: &nbsp  <select name="title" id="tinfo"></select>
-            <p></p>
-        Type:&nbsp <select name="type">
-            <option value="External">External</option>
-            <option value="Internal">Internal</option>
-        </select><br/>
-            <p></p>
+<p></p></div>
 
-        Number of Positions:&nbsp <input type=text name="num" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="only support integers"><br>
-            <p></p>
-        Salary from:&nbsp <input type=text name="sal_from" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="only support integers"><br>
-            <p></p>
-        Salary to:&nbsp <input type=text name="sal_to" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="only support integers"><br>
-            <p></p>
-        Salary Frequency:&nbsp <select name="sal_freq">
-               <option value="Annual">Annual</option>
-                <option value="Daily">Daily</option>
-                <option value="Hourly">Hourly</option>
-        </select><br>
-            <p></p>
-        Post Until:&nbsp <input type=date name="post_until" placeholder="YYYY-MM-DD"><br>
-            <p></p>
-
-        <p><input type=submit value=Post></p>
-    </form>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                       Job Name:&nbsp <input type=text name="jname">
+                    </li>
+                    <li class="list-group-item">
+                        Job ID:&nbsp <input type=text name="jid" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="number only">
+                    </li>
+                    <li  class="list-group-item">
+                         Job Level:&nbsp <select name="level" id="levels"></select>
+                    </li>
+                    <li  class="list-group-item">
+                       Agency / Unit: &nbsp  <select  style="width: 75%" name="offer" id="offer"></select>
+                     <li  class="list-group-item">
+                        Civil Service Title: &nbsp  <select style="width: 75%" name="title" id="tinfo"></select>
+                    </li>
+                    <li  class="list-group-item">
+                        Type:&nbsp
+                        <select name="type">
+                            <option value="External">External</option>
+                            <option value="Internal">Internal</option>
+                        </select>
+                    </li>
+                    <li  class="list-group-item">
+                    Number of Positions:&nbsp <input type=text name="num" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="only support integers">
+                    </li>
+                    <li  class="list-group-item">
+                    Salary from:&nbsp <input type=text name="sal_from" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="only support integers">
+                    </li>
+                    <li  class="list-group-item">
+                    Salary to:&nbsp <input type=text name="sal_to" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="only support integers">
+                    </li>
+                    <li  class="list-group-item">
+                        Salary Frequency:&nbsp
+                        <select name="sal_freq">
+                           <option value="Annual">Annual</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Hourly">Hourly</option>
+                         </select>
+                    </li>
+                    <li  class="list-group-item">
+                                Post Until:&nbsp <input type=date name="post_until" placeholder="YYYY-MM-DD"><br>
+                    </li>
+<br>
+                    <input class="btn btn-primary" type=submit value=Post>
+                </ul>
+        </form>
+    </div>
+    </div>
 </div>
-</center></div>
+<br>
 {% if show == 1 %}
 <div class="flash">
     <p>You have inserted vacancy with <b>ID: {{jid}}; Name: {{jname}}, Type: {{vtype}}.</b> </p>
@@ -54,11 +76,6 @@
     <p>This job id is already in our database, so we just create a vacancy for you (input job information has been discarded)</p>
 </div>
 {% endif %}
-<!--{% if show == 2 %}-->
-<!--<div class="error">-->
-    <!--<p>This job {{jid}} is already in our database.</p>-->
-<!--</div>-->
-<!--{% endif %}-->
 {% if show == 3 %}
 <div class="error">
     <p>This vacancy already exists! Please check your (job id, vacancy type) pair. </p>
@@ -69,8 +86,11 @@
     <p>Invalid information</p>
 </div>
 {% endif %}
-<button onclick="goBack()">Back</button>
-<button onclick="window.location.href = '/admin';">Back home</button>
+
+    <br>
+
+<button class="btn btn-dark" onclick="goBack()">Back</button>
+
 <script>
 function goBack() {
     window.history.back();

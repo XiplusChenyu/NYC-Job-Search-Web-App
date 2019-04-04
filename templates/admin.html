@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body%}
-    <div>{{ message }}</div>
-    <p align="center"><a href="/insert">You can post a new vacancy here</a></p>
-    <p align="center"><a href="/admin_search">You can search and delete a vacancy here</a></p>
+<div class="welcome">{{ message }}</div>
+    <br/>
+    <p align="center"><a href="/insert" style="font: 25px bold">You can post a new vacancy here</a></p>
+    <p align="center"><a href="/admin_search" style="font: 25px bold">You can search and delete a vacancy here</a></p>
 {% endblock %}

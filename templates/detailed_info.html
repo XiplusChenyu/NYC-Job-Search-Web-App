@@ -1,25 +1,43 @@
 {% extends "layout.html" %}
 {% block body%}
-<h3 align="center">Detailed information</h3>
-<h5>Details of job:&nbsp {{jid}}, {{vtype}}</h5>
 
-<form action="{{ url_for('apply') }}" method=post>
-        <input type=hidden name=jid value={{jid}}>
-        <input type=hidden name=vtype value={{vtype}}>
-        <input type=submit value="Apply now">
-</form>
-<br/>
-  <table border="1">
+<div class="card border-dark mb-3">
+    <div class="card-header" style="position: relative">
+    <b>Job:</b> {{jid}}, {{vtype}}
+    <form action="{{ url_for('apply') }}" method=post style="display: inline; position: absolute; right:10px; top: 4px;">
+            <input type=hidden name=jid value={{jid}}>
+            <input type=hidden name=vtype value={{vtype}}>
+            <input type=submit value="Apply now" class="btn btn-primary">
+      </form>
+
+    </div>
+
+  <div class="card-body text-dark">
+    <h5 class="card-title">Position Information</h5>
+    <div class="card-text">
+          <table border="1">
     {% for h, t in zippedlist %}
     <tr>
-        <td> &nbsp{{h}} </td>
+        <td style="color: #377ba8; text-align: center; font: 16px bold; width: 15%; padding: auto"> &nbsp{{h}} </td>
         <td> &nbsp{{t}} </td>
     </tr>
     {% endfor %}
     </table>
+    </div>
+  <div>
+      <br>
+    <button  class="btn btn-dark" style="display: inline" onclick="goBack()">Back</button>
+    <button class="btn btn-dark" onclick="window.location.href = '/';">Back home</button>
+  </div>
+  </div>
+</div>
 
-<button onclick="goBack()">Back</button>
-<button onclick="window.location.href = '/';">Back home</button>
+
+
+<br/>
+
+
+
 <script>
 function goBack() {
     window.history.back();

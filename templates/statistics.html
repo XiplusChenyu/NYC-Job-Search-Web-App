@@ -1,38 +1,66 @@
 {% extends "layout.html" %}
 {% block body%}
-<h2><center>Statistics!</center></h2>
-<div>There are currently <b>{{jobnum}}</b> Jobs in our system!</div>
-<div>There are currently <b>{{usernum}}</b> Users using our system!</div>
-<div>There are currently <b>{{appnum}}</b> Applications submitted!</div>
-<br/>
-<h2><center>Show Salary Distribution</center></h2>
-<form method="POST">
-<div>Salary Frequency:
-    <select name="attr">
-        <option value="Annual">Annual</option>
-        <option value="Daily">Daily</option>
-        <option value="Hourly">Hourly</option>
-    </select><br/>
-    Salary type:
-    <select name="attr2">
-        <option value="lower">Lower Bound</option>
-        <option value="upper">Upper Bound</option>
-    </select>
-    <p><input type=submit value="Show Results"></p>
+
+<button class="btn btn-dark" onclick="window.location.href = '/';">Back home</button>
+<div class="card-columns" style="margin: 5% 5% 5% 5%">
+
+<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+  <div class="card-header">Statistics!</div>
+  <div class="card-body">
+    <h5 class="card-title">Current System Status</h5>
+    <p class="card-text">
+        There are currently <b>{{jobnum}}</b> Jobs in our system!<br>
+        There are currently <b>{{usernum}}</b> Users using our system!<br>
+        There are currently <b>{{appnum}}</b> Applications submitted!<br>
+    </p>
+  </div>
 </div>
-</form>
-    {% if show == 1:%}
-<div class=>
-    <h3><center>Salary Distribution</center></h3>
-    <center>
-    <canvas id="circle" width="600" height="400">Browser not support Canvas!</canvas>
-        <p><b>{{txt}}</b></p>
-    </center>
+
+<div class="card mb-3" style="max-width: 20rem;">
+  <div class="card-header">Plot Here</div>
+  <div class="card-body">
+    <h5 class="card-title">Show Salary Distribution</h5>
+    <div class="card-text" style="position: relative">
+      <form method="POST">
+        <div>
+            <b>Salary Frequency:</b>
+            <select name="attr" style="position: absolute; right: 5%">
+                <option value="Annual">Annual</option>
+                <option value="Daily">Daily</option>
+                <option value="Hourly">Hourly</option>
+            </select><br/>
+            <b>Salary Type:</b>
+            <select name="attr2" style="position: absolute; right: 5%">
+                <option value="lower">Lower Bound</option>
+                <option value="upper">Upper Bound</option>
+            </select>
+
+
+        </div>
+           <br>
+        <input class="btn btn-primary" type=submit value="Show Results">
+      </form>
+
+
+  </div>
+</div>
+</div>
+
+    {% if show ==1 %}
+<div class="card" style="width: max-content">
+  <h5 class="card-header" >Salary Distribution</h5>
+  <div class="card-body">
+    <canvas id="circle" width="600" height="400" style="width: auto">Browser not support Canvas!</canvas>
+      <p class="card-text"><b>{{txt}}</b></p>
+  </div>
+</div>
     {%endif%}
 </div>
 
-<button onclick="window.location.href = '/';">Back home</button>
+
+
 <script type="text/javascript">
+
 var color = ["#27255F","#2F368F","#3666B0","#2CA8E0","#77D1F6"];
 var data = {{data}};
 var low = {{low}};
@@ -44,9 +72,9 @@ var width = 30;
 var height = 10;
 var posX = ox * 2 +5, posY = 30;
 var textX = posX + width + 5, textY = posY + 10;
+var canvas = document.getElementById("circle");
 
 function drawCircle(){
-	var canvas = document.getElementById("circle");
 	var ctx = canvas.getContext("2d");
 	var startPoint=0;
 	for(var i=0;i<data.length;i++){
@@ -58,7 +86,7 @@ function drawCircle(){
 		ctx.fill();
 		ctx.fillStyle = color[i];
 		ctx.fillRect(posX, posY + 20 * i, width, height); //sample color
-		ctx.font = 'bold 15px'
+		ctx.font = 'bold 15px';
 		ctx.fillStyle = "#000";
 		var text = "Salary from " + low[i] + " to " + high[i] + "：" + data[i] + "%";
 		ctx.fillText(text, textX, textY + 20 * i);
@@ -67,5 +95,7 @@ function drawCircle(){
 	}
 }
 drawCircle();
+
 </script>
+
 {% endblock %}

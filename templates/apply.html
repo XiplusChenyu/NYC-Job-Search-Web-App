@@ -1,13 +1,19 @@
 {% extends "layout.html" %}
 {% block body%}
-{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}</p>
-        {% if show ==1 %}
-        <div class="flash">
-            <p>Your application for job {{jid}}, {{vtype}} has been submitted! You can check it out on your home page.</p>
-        </div>
+{% if error %}
+    <p class=error>
+        <strong>Error:</strong> {{ error }}
+    </p>
+    <br>
+{% endif %}
+    {% if show ==1 %}
+<div class="welcome">
+    Your application for job: <b>{{jid}}, {{vtype}}</b> has been received!
+</div>
+        <br>
     {% endif %}
-<button onclick="goBack()">Back</button>
-<button onclick="window.location.href = '/';">Back home</button>
+<button class="btn btn-dark" onclick="goBack()">Back</button>
+<button class="btn btn-dark" onclick="window.location.href = '/';">Back home</button>
 <script>
 function goBack() {
     window.history.back();
